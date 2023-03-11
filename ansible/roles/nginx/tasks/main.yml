@@ -1,0 +1,31 @@
+---
+- name: Instalando Nginx CENTOS
+  apt: 
+    name: nginx 
+    state: latest
+  notify: reiniciando nginx #executa o handler
+  when: ansible_pkg_mgr == "apt"
+
+- name: Instalando Nginx DEBIAN
+  yum: name=nginx state=latest #outra forma de declarar
+  notify: reiniciando nginx #executa o handler
+  when: ansible_pkg_mgr == "yum"
+
+- name: Copiando arquivo de configuração
+  copy: src=debian/default.conf dest=/etc/nginx/conf.d
+  when: ansible_pkg_mgr == "apt"
+
+- name: Copiando arquivo de configuração
+  copy: src=centos/default.conf dest=/etc/nginx/conf.d
+  when: ansible_pkg_mgr == "yum"
+
+- name: Copiando index.html
+  template: src=index.html dest=/var/www/html
+  notify: reiniciando nginx
+  when: ansible_pkg_mgr == "apt"
+
+- name: Copiando index.html
+  template: src=index.html dest=/usr/share/nginx/html/index.html
+  notify: reiniciando nginx
+  when: ansible_pkg_mgr == "yum"
+...

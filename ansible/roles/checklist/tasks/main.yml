@@ -1,0 +1,13 @@
+---
+- name: Instalando pacotes essenciais APT - CENTOS
+  apt:
+   name: "{{pacotes}}"
+   state: present
+  when: ansible_pkg_mgr == "apt"
+
+- name: Instalando pacotes essenciais YUM - DEBIAN
+  yum:
+   name: "{{pacotes}}"
+   state: present
+  when: ansible_pkg_mgr == "yum"
+...

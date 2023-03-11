@@ -1,0 +1,28 @@
+---
+- name: Create a login user {{ user }}
+  user:
+    name: "{{ user }}"
+    password: "{{ password }}"
+    shell: /bin/bash
+    #Caso queira que ele pertença a um grupo
+    # groups:
+    #   - sudo
+    #caso precise remover a pasta usuário mude para absent
+    state: present
+    #caso precise remover a pasta usuário
+    #remove: yes 
+
+- name: Add public key to authorized_keys 
+  authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: "{{ lookup('file', '/home/{{ user }}/.ssh/id_rsa.pub') }}"
+
+- name: Add {{ user }} to sudoers file
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    regexp: '^{{ user }}'
+    #sudo sem senha
+    #line: '{{ user }} ALL=(ALL) NOPASSWD: ALL'
+    #sudo com senha
+    line: '{{ user }} ALL=(ALL) ALL'
