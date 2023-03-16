@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
             path: "scripts/centos.sh"
     end
     
-
+    ## Não remover - Ansible Server
     config.vm.define "vm01" do |vm01|
         vm01.vm.provider :virtualbox do |vb|
             vb.name = "lab-vm-01"
