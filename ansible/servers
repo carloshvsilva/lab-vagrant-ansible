@@ -1,5 +1,5 @@
-vm02 ansible_host=192.168.100.52 ansible_user=vagrant ansible_password=vagrant
-vm03 ansible_host=192.168.100.53 ansible_user=vagrant ansible_password=vagrant
+vm02 ansible_host=192.168.100.52 ansible_user=root ansible_password=admin
+vm03 ansible_host=192.168.100.53 ansible_user=root ansible_password=admin
 vm04 ansible_host=192.168.100.54 ansible_user=root ansible_password=admin
 vm05 ansible_host=192.168.100.55 ansible_user=root ansible_password=admin
 #vm06 ansible_host=192.168.100.56 ansible_user=root ansible_password=admin
