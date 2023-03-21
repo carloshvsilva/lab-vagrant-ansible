@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
         vm01.vm.box = "ubuntu/jammy64"
         vm01.vm.network "public_network", ip: "192.168.100.51"
         vm01.vm.provision "shell",
-            path: "scripts/ubuntu.sh"
+            path: "scripts/server.sh"
         vm01.vm.synced_folder "ansible/", "/home/vagrant/ansible"
     end
 end
